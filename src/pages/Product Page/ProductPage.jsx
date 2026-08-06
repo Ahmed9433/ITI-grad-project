@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSearch } from "../../context/SearchContext";
 import { Link, useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
@@ -9,6 +10,7 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const data = useParams();
   const { addToCart } = useCart();
+  const { loading } = useSearch();
 
   useEffect(() => {
     axios
@@ -16,6 +18,16 @@ const ProductPage = () => {
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, [data.id]);
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center my-5 py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5 p-5">
