@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
 
@@ -73,15 +73,16 @@ const ProductPage = () => {
               +
             </button>
           </div>
-          <button
+          <Link
             id="add-to-cart"
             onClick={() => {
               addToCart(product, quantity);
               setQuantity(1);
             }}
+            to="/cart"
           >
             Add to Cart
-          </button>
+          </Link>
         </div>
       </div>
     </div>
