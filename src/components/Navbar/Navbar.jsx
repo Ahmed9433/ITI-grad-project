@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { CiSearch, CiLogin } from "react-icons/ci";
+import { CiLogin } from "react-icons/ci";
 import { GoPersonAdd } from "react-icons/go";
 import { FaShoppingCart } from "react-icons/fa";
+import Search from "../../features/Search";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -35,13 +36,7 @@ const Navbar = () => {
         >
           <div className="d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center gap-3">
             <div className="nav-search">
-              <input
-                type="text"
-                autoComplete="off"
-                id="nav-search-input"
-                placeholder="Search for items"
-              />
-              <CiSearch className="search-icon" />
+              <Search />
             </div>
             <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
               <Link to="/login" className="navbar-link">
