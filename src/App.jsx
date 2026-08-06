@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { SearchProvider } from "./context/SearchContext";
 import Home from "./pages/Home Page/Home";
 import ProductPage from "./pages/Product Page/ProductPage";
 import CartPage from "./pages/Cart Page/CartPage";
@@ -8,7 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <>
+    <SearchProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,7 +18,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
       </Routes>
-    </>
+    </SearchProvider>
   );
 }
 
