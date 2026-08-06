@@ -3,8 +3,8 @@ import { useCart } from "../../context/CartContext";
 import { CiLogin } from "react-icons/ci";
 import { GoPersonAdd } from "react-icons/go";
 import { FaShoppingCart } from "react-icons/fa";
-import { useContext } from 'react';
-import { FavoritesContext } from '../../context/FavoritesContext';
+import { useContext } from "react";
+import { FavoritesContext } from "../../context/FavoritesContext";
 import Search from "../../features/Search";
 import "./navbar.css";
 
@@ -15,7 +15,7 @@ const Navbar = () => {
     (total, item) => total + item.quantity,
     0,
   );
-   const { favorites } = useContext(FavoritesContext);
+  const { favorites } = useContext(FavoritesContext);
 
   return (
     <nav className="navbar navbar-expand-lg">
@@ -54,10 +54,13 @@ const Navbar = () => {
                   <span className="cart-badge">{totalQuantity}</span>
                 )}
               </Link>
-                <Link to="/favorites" className="nav-link">❤️
-                 {favorites.length > 0 && (
-                 <span className="fav-badge">{favorites.length}</span>)} </Link>
-           </div>
+              <Link to="/favorites" className="nav-link">
+                ❤️
+                {favorites.length > 0 && (
+                  <span className="fav-badge">{favorites.length}</span>
+                )}{" "}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

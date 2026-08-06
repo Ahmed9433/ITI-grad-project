@@ -15,7 +15,7 @@ const ProductPage = () => {
       .get(`https://fakestoreapi.com/products/${data.id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [data.id]);
 
   return (
     <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5 p-5">

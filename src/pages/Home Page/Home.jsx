@@ -1,5 +1,4 @@
-
-import { useSearch } from "../../context/useSearch";
+import { useSearch } from "../../context/SearchContext";
 import ProductCard from "../../components/Product Card/ProductCard";
 import "./home.css";
 
@@ -15,26 +14,20 @@ const Home = () => {
       </div>
     );
   }
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://fakestoreapi.com/products")
+  //     .then((res) => setProducts(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
-    <div className="container my-4">
-      {searchTerm.trim() !== "" && (
-        <h3 className="mb-4">
-          Search results for: <span className="text-primary">"{searchTerm}"</span>
-        </h3>
-      )}
-
-      {filteredProducts.length === 0 && searchTerm.trim() !== "" ? (
-        <div className="text-center py-5">
-          <h4>No products found matching "{searchTerm}"</h4>
-        </div>
-      ) : (
-        <div id="product-list">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+    <div id="product-list">
+      {filteredProducts.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 };
