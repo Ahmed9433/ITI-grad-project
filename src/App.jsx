@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { SearchProvider } from "./context/SearchContext";
 import Home from "./pages/Home Page/Home";
 import ProductPage from "./pages/Product Page/ProductPage";
 import CartPage from "./pages/Cart Page/CartPage";
@@ -9,7 +10,7 @@ import FavoritesPage from "./pages/Favorites Page/FavoritesPage";
 
 function App() {
   return (
-    <>
+    <SearchProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,7 +20,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
-    </>
+    </SearchProvider>
   );
 }
 

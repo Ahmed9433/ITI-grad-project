@@ -27,6 +27,7 @@
 #product-detils-button #add-to-cart {
   background-color: #000;
   color: #fff;
+  text-decoration: none;
   padding: 0.5rem 2rem;
   border: none;
   border-radius: 3px;
