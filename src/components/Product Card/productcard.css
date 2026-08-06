@@ -79,3 +79,13 @@
 #product-button button:active {
   transform: translateY(0);
 }
+.favorite-btn {
+  position: absolute;
+  top: 12px;       
+  right: 12px;      
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;      
+  padding: 0;
+}

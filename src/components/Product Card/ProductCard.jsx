@@ -2,12 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { FavoritesContext } from '../../context/FavoritesContext';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import "./productcard.css";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isFav = favorites.some((item) => item.id === product.id);
+  const handleFavoriteClick = (e) => {
+  e.stopPropagation();
+  toggleFavorite(product);
+  };
 
   const rating = product.rating.rate;
   const ratingPercentage = Math.round(rating * 2 * 10);
@@ -23,7 +28,17 @@ const ProductCard = ({ product }) => {
       <div id="product-card" key={product.id}>
         <div id="product-image">
           <img src={product.image} alt={product.title} />
-          <button onClick={() => toggleFavorite(product)} className="fav-btn">{isFav ? '❤️' : '🤍'}</button>
+         
+          <button onClick={handleFavoriteClick} className="favorite-btn">
+            {isFav ? (
+    
+            <FaHeart style={{ color: 'red', fontSize: '1.5rem' }} />
+             ) : (
+    
+            <FaRegHeart style={{ fontSize: '1.5rem' }} />
+             )}
+          </button>
+         
           <div
             id="rating-badge-border"
             style={{
