@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { FavoritesContext } from '../../context/FavoritesContext';
 import "./productcard.css";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const isFav = favorites.some((item) => item.id === product.id);
 
   const rating = product.rating.rate;
   const ratingPercentage = Math.round(rating * 2 * 10);
@@ -19,6 +23,7 @@ const ProductCard = ({ product }) => {
       <div id="product-card" key={product.id}>
         <div id="product-image">
           <img src={product.image} alt={product.title} />
+          <button onClick={() => toggleFavorite(product)} className="fav-btn">{isFav ? '❤️' : '🤍'}</button>
           <div
             id="rating-badge-border"
             style={{
