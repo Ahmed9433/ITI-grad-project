@@ -1,0 +1,67 @@
+import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+import { CiSearch, CiLogin } from "react-icons/ci";
+import { GoPersonAdd } from "react-icons/go";
+import { FaShoppingCart } from "react-icons/fa";
+import "./navbar.css";
+
+const Navbar = () => {
+  const { cartItems } = useCart();
+
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
+  return (
+    <nav className="navbar navbar-expand-lg">
+      <div className="container">
+        <div>
+          <Link className="nav-logo" to="/">
+            <b>Home</b>
+          </Link>
+        </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarContent"
+        >
+          <div className="d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center gap-3">
+            <div className="nav-search">
+              <input
+                type="text"
+                autoComplete="off"
+                id="nav-search-input"
+                placeholder="Search for items"
+              />
+              <CiSearch className="search-icon" />
+            </div>
+            <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+              <Link to="/login" className="navbar-link">
+                <CiLogin /> Log In
+              </Link>
+              <Link to="/signup" className="navbar-link">
+                <GoPersonAdd /> Sign Up
+              </Link>
+              <Link to="/cart" className="cart-icon">
+                <FaShoppingCart size={24} />
+                {totalQuantity > 0 && (
+                  <span className="cart-badge">{totalQuantity}</span>
+                )}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
