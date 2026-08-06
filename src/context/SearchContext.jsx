@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 export const SearchContext = createContext(null);
@@ -37,3 +37,5 @@ export const SearchProvider = ({ children }) => {
     </SearchContext.Provider>
   );
 };
+
+export const useSearch = () => useContext(SearchContext);

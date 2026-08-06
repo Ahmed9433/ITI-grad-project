@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearch } from "../context/useSearch";
 import { Link } from "react-router-dom";
+import "./search.css";
 
 const Search = () => {
   const { searchTerm, setSearchTerm, filteredProducts } = useSearch();
@@ -28,20 +29,23 @@ const Search = () => {
         }}
       />
 
-   {searchTerm && (
-  <button
-    type="button"
-    className="btn-close position-absolute end-0 top-50 translate-middle-y me-2"
-    style={{ 
-      fontSize: "0.75rem",
-      filter: "invert(30%) sepia(100%) saturate(500%) hue-rotate(190deg)" 
-    }}
-    onClick={() => setSearchTerm("")}
-    aria-label="Clear search"
-  />
-)}
+      {searchTerm && (
+        <button
+          type="button"
+          className="btn-close position-absolute end-0 top-50 translate-middle-y me-2"
+          style={{
+            fontSize: "0.75rem",
+            filter: "invert(30%) sepia(100%) saturate(500%) hue-rotate(190deg)",
+          }}
+          onClick={() => setSearchTerm("")}
+          aria-label="Clear search"
+        />
+      )}
       {showDropdown && searchTerm.trim() && (
-        <ul className="list-group position-absolute w-100 shadow" style={{ zIndex: 1000 }}>
+        <ul
+          className="list-group position-absolute w-100 shadow"
+          style={{ zIndex: 1000 }}
+        >
           {filteredProducts.length > 0 ? (
             filteredProducts.slice(0, 6).map((item) => (
               <li key={item.id} className="list-group-item p-0">
@@ -50,8 +54,13 @@ const Search = () => {
                   onClick={handleResultClick}
                   className="d-flex align-items-center gap-2 p-2 text-decoration-none text-dark"
                 >
-                  <img src={item.image} alt={item.title} width="30" height="30" style={{ objectFit: "contain" }} />
-                  <span className="text-truncate">{item.title}</span>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    width="30"
+                    height="30"
+                  />
+                  <span className="search-item">{item.title}</span>
                 </Link>
               </li>
             ))
