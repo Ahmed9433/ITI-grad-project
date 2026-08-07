@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams ,useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
   const data = useParams();
   const { addToCart } = useCart();
 
@@ -16,8 +18,10 @@ const ProductPage = () => {
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, []);
-
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return (
+  <>
+    {message && <div className="login-message">{message}</div>}
     <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5 p-5">
       <div id="product-details-image">
         <img src={product?.image} alt={product?.title} />
@@ -76,6 +80,13 @@ const ProductPage = () => {
           <Link
             id="add-to-cart"
             onClick={() => {
+              if (!currentUser) {
+                setMessage("Please sign in first to add products to your cart.");
+                setTimeout(() => {
+                  setMessage("");
+                  navigate("/login");
+                }, 2000);
+              }
               addToCart(product, quantity);
               setQuantity(1);
             }}
@@ -86,6 +97,7 @@ const ProductPage = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 
