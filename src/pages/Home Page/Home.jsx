@@ -14,14 +14,6 @@ const Home = () => {
       </div>
     );
   }
-  // const [products, setProducts] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://fakestoreapi.com/products")
-  //     .then((res) => setProducts(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   return (
     <div id="product-list">

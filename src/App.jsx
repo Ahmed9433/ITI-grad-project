@@ -7,6 +7,7 @@ import LoginPage from "./pages/Login Page/LoginPage";
 import SignupPage from "./pages/Signup Page/SignupPage";
 import Navbar from "./components/Navbar/Navbar";
 import FavoritesPage from "./pages/Favorites Page/FavoritesPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
+      <Footer />
     </SearchProvider>
   );
 }

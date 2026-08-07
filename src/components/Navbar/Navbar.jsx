@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { CiLogin } from "react-icons/ci";
 import { GoPersonAdd } from "react-icons/go";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import { useContext } from "react";
 import { FavoritesContext } from "../../context/FavoritesContext";
 import Search from "../../features/Search";
@@ -18,7 +18,7 @@ const Navbar = () => {
   const { favorites } = useContext(FavoritesContext);
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg py-2 py-lg-3">
       <div className="container">
         <div>
           <Link className="nav-logo" to="/">
@@ -55,10 +55,10 @@ const Navbar = () => {
                 )}
               </Link>
               <Link to="/favorites" className="nav-link">
-                ❤️
+                <FaHeart color="red" size={24} />
                 {favorites.length > 0 && (
                   <span className="fav-badge">{favorites.length}</span>
-                )}{" "}
+                )}
               </Link>
             </div>
           </div>

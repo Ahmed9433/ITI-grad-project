@@ -58,6 +58,9 @@
 }
 
 @media (min-width: 992px) {
+  #product-details-wrapper {
+    height: calc(100vh - 80px);
+  }
   #product-details-image {
     width: 25%;
     padding: 0;
