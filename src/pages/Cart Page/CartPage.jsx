@@ -1,9 +1,15 @@
-import React from 'react'
-
 const CartPage = () => {
   return (
-    <div>CartPage</div>
-  )
-}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "calc(100vh - 80px)",
+      }}
+    >
+      <div></div>
+    </div>
+  );
+};
 
-export default CartPage
+export default CartPage;

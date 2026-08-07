@@ -8,6 +8,7 @@ import SignupPage from "./pages/Signup Page/SignupPage";
 import Navbar from "./components/Navbar/Navbar";
 import FavoritesPage from "./pages/Favorites Page/FavoritesPage";
 import "./App.css"
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
+      {!hideNavbar &&<Footer />}
     </SearchProvider>
   );
 }

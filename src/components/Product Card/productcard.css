@@ -52,7 +52,7 @@
 }
 #rating-badge-inner span {
   pointer-events: none;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
 }
 #product-title h6 {
   display: -webkit-box;
@@ -81,11 +81,11 @@
 }
 .favorite-btn {
   position: absolute;
-  top: 12px;       
-  right: 12px;      
+  top: 12px;
+  right: 12px;
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 10;      
+  z-index: 10;
   padding: 0;
 }
