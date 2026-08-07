@@ -1,3 +1,5 @@
+import "./cartpage.css";
+
 const CartPage = () => {
   return (
     <div
