@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useSearch } from "../context/useSearch";
+import { useSearch } from "../context/SearchContext";
 import { Link } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 import "./search.css";
 
 const Search = () => {
@@ -14,37 +15,29 @@ const Search = () => {
 
   return (
     <div className="position-relative">
-      <input
-        type="text"
-        className="form-control pe-4"
-        placeholder="Search products..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onFocus={() => setShowDropdown(true)}
-        onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            setShowDropdown(false);
-          }
-        }}
-      />
-
-      {searchTerm && (
-        <button
-          type="button"
-          className="btn-close position-absolute end-0 top-50 translate-middle-y me-2"
-          style={{
-            fontSize: "0.75rem",
-            filter: "invert(30%) sepia(100%) saturate(500%) hue-rotate(190deg)",
+      <div className="position-relative">
+        <input
+          type="text"
+          className="px-3"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onFocus={() => setShowDropdown(true)}
+          onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setShowDropdown(false);
+            }
           }}
-          onClick={() => setSearchTerm("")}
-          aria-label="Clear search"
         />
-      )}
+        <CiSearch id="searc-icon" />
+      </div>
+
       {showDropdown && searchTerm.trim() && (
         <ul
           className="list-group position-absolute w-100 shadow"
           style={{ zIndex: 1000 }}
+          onMouseDown={(e) => e.preventDefault()}
         >
           {filteredProducts.length > 0 ? (
             filteredProducts.slice(0, 6).map((item) => (
@@ -59,8 +52,9 @@ const Search = () => {
                     alt={item.title}
                     width="30"
                     height="30"
+                    style={{ objectFit: "contain" }}
                   />
-                  <span className="search-item">{item.title}</span>
+                  <span className="text-truncate">{item.title}</span>
                 </Link>
               </li>
             ))

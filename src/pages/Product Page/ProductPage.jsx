@@ -17,8 +17,9 @@ const ProductPage = () => {
       .get(`https://fakestoreapi.com/products/${data.id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [data.id]);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   return (
   <>
     {message && <div className="login-message">{message}</div>}

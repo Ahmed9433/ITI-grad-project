@@ -5,13 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App.jsx";
 import { FavoritesProvider } from "./context/FavoritesContext.jsx";
+import { SearchProvider } from "./context/SearchContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <CartProvider>
-      <FavoritesProvider>
-      <App />
-      </FavoritesProvider>
+      <SearchProvider>
+        <FavoritesProvider>
+          <App />
+        </FavoritesProvider>
+      </SearchProvider>
     </CartProvider>
   </BrowserRouter>,
 );
