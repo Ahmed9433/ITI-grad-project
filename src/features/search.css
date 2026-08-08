@@ -1,0 +1,7 @@
+#searc-icon {
+  position: absolute;
+  color: #9c9c9c;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+}

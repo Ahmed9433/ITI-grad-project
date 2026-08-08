@@ -1,0 +1,108 @@
+.form-cont {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #020b16,
+    #061525,
+    #0a2138
+  );
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-cont .form {
+  width: 500px;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 20px 50px rgba(15, 16, 38, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  h1 {
+    color: #091F34;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+  label {
+    color: #173a52;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: #f7f6fb;
+    border: 1px solid #ddd9ea;
+    color: #17172f;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  input:focus {
+    outline: none;
+    background: #fff;
+    border-color: #1d0157;
+    box-shadow: 0 0 0 4px rgba(95, 75, 139, 0.12);
+  }
+  button {
+    cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border-radius: 12px;
+    color: white;
+    background-color: #151b35;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: .7rem 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+      }
+  button:hover {
+    background-color: #b23a48;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  }
+  p {
+    text-align: center;
+    margin-top: 20px;
+    color: #718394;
+    .link {
+      color: #0b4f7a;
+      font-weight: 600;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  input + p {
+    text-align: left;
+    color: red;
+    font-size: 13px;
+    margin: -3px 2px;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
