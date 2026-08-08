@@ -15,8 +15,8 @@ const CartProductCard = ({ product }) => {
         style={{ objectFit: "contain" }}
       />
 
-      <span className="title text-truncate flex-grow-1">{product.title}</span>
-      <div className="cont d-flex align-items-center gap-3">
+      <span className="text-truncate flex-grow-1">{product.title}</span>
+      <div className="d-flex align-items-center gap-3">
           <div className="text-black-50">
           <p className="m-0 price">
             <span>$</span>

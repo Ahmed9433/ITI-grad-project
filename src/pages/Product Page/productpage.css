@@ -45,7 +45,6 @@ h4 {
   font-size: 1rem;
   font-weight: 600;
   padding: 0.5rem 2rem;
-  margin-bottom: 1rem;
   border: none;
   border-radius: 10px;
   text-decoration: none;
@@ -66,7 +65,6 @@ h4 {
   font-size: 1.1rem;
   font-weight: 600;
   padding: 0.5rem 2rem;
-  margin-bottom: 1rem;
   border: none;
   text-decoration: none;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
@@ -80,7 +78,6 @@ h4 {
 #product-quantity button:last-child {
   border-radius: 0 10px 10px 0;
 }
-
 @media (min-width: 992px) {
   #product-details-wrapper {
     height: calc(100vh - 80px);
@@ -93,32 +90,24 @@ h4 {
     width: 75%;
   }
 }
-
 .login-message {
   position: fixed;
   top: 20px;
   right: 20px;
-
   background: #ffffff;
   color: #111;
-
   padding: 14px 22px;
   border-radius: 10px;
   border-left: 5px solid #111;
-
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-
   z-index: 9999;
-
   animation: slideDown .3s ease;
 }
-
 @keyframes slideDown {
   from {
     opacity: 0;
     transform: translateY(-15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
