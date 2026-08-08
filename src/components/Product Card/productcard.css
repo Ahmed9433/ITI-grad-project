@@ -21,6 +21,16 @@
   object-fit: contain;
   padding: 1rem;
 }
+#favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
 #rating-badge-border {
   position: absolute;
   top: 1rem;
@@ -52,7 +62,7 @@
 }
 #rating-badge-inner span {
   pointer-events: none;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
 }
 #product-title h6 {
   display: -webkit-box;
@@ -61,8 +71,8 @@
   line-clamp: 1;   
   overflow: hidden;
 }
-#product-price p {
-  color: #9c9c9c;
+#product-price {
+  color: #9c9c9c
 }
 #product-button button {
   background-color: #000;
