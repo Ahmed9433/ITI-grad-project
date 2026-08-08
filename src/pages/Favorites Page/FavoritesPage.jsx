@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 import { useFavorites } from "../../context/FavoritesContext";
 import ProductCard from "../../components/Product Card/ProductCard";
 import "./FavoritesPage.css";
 
 export default function FavoritesPage() {
   const { favorites } = useFavorites();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (favorites.length === 0) {
     return (

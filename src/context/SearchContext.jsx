@@ -5,8 +5,14 @@ export const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(() => {
+    return localStorage.getItem("searchTerm") || "";
+  });
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem("searchTerm", searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     axios
