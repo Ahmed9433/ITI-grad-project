@@ -3,19 +3,28 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
-
+import { usePop } from "../../context/Popcontext"; // استيراد الـ Hook
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const data = useParams();
   const { addToCart } = useCart();
-
+const { openNotification } = usePop();
   useEffect(() => {
     axios
       .get(`https://fakestoreapi.com/products/${data.id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+
+
+
+  const handleCardClick = () => {
+    // إظهار الإشعار
+    openNotification("تنبيه المنتجات", `عرض تفاصيل ${product.title}`);
+ 
+  };
 
   return (
     <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5 p-5">
@@ -78,6 +87,7 @@ const ProductPage = () => {
             onClick={() => {
               addToCart(product, quantity);
               setQuantity(1);
+              handleCardClick()
             }}
           >
             Add to Cart
