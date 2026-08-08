@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { useCart } from "../../context/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
 import "./cartproductcard.css";
 
 const CartProductCard = ({ product }) => {
   const { removeFromCart, updateQuantity } = useCart();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <li className="list-group-item d-flex align-items-center gap-4 p-2">
@@ -15,9 +20,9 @@ const CartProductCard = ({ product }) => {
         style={{ objectFit: "contain" }}
       />
 
-      <span className="text-truncate flex-grow-1">{product.title}</span>
-      <div className="d-flex align-items-center gap-3">
-          <div className="text-black-50">
+      <span className="title text-truncate flex-grow-1">{product.title}</span>
+      <div className="cont d-flex align-items-center gap-3">
+        <div className="text-black-50">
           <p className="m-0 price">
             <span>$</span>
             {product.price.toFixed(2)}
@@ -39,7 +44,6 @@ const CartProductCard = ({ product }) => {
           <FaTrashAlt size={16} />
         </button>
       </div>
-      
     </li>
   );
 };

@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { useSearch } from "../../context/SearchContext";
 import ProductCard from "../../components/Product Card/ProductCard";
 import Landing from "../../components/Landing/Landing";
 import "./home.css";
 
 const Home = () => {
+  const { filteredProducts, searchTerm, loading } = useSearch();
+
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, 0);
+    }
+  }, [loading]);
   const { filteredProducts, loading, category, setCategory } = useSearch();
 
   if (loading) {
