@@ -2,16 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import Footer from "../../components/Footer/Footer";
 import "./productpage.css";
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
-  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
-  const data = useParams();
+  const [expanded, setExpanded] = useState(false);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const data = useParams();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
     axios
@@ -19,7 +20,16 @@ const ProductPage = () => {
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
   }, [data.id]);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!product) {
+    return (
+      <div className="d-flex justify-content-center align-items-center my-5 py-5">
+        <div className="spinner-border text-dark" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -44,12 +54,9 @@ const ProductPage = () => {
           <div id="product-description">
             <p
               id="description-text"
-              className="description"
-              onClick={() =>
-                document
-                  .getElementById("description-text")
-                  .classList.toggle("description")
-              }
+              id="description-text"
+              className={expanded ? "" : "description"}
+              onClick={() => setExpanded((prev) => !prev)}
             >
               {product?.description}
             </p>
@@ -59,7 +66,7 @@ const ProductPage = () => {
             <h5>{product?.category}</h5>
           </div>
 
-          <div id="product-price">
+          <div>
             <h4>
               <b>${product?.price}</b>
             </h4>
@@ -98,7 +105,7 @@ const ProductPage = () => {
                 if (!currentUser) {
                   e.preventDefault();
                   setMessage(
-                    "Please sign in first to add products to your cart."
+                    "Please sign in first to add products to your cart.",
                   );
                   setTimeout(() => {
                     setMessage("");
@@ -115,7 +122,6 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

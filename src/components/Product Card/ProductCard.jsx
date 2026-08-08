@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
-import { FavoritesContext } from '../../context/FavoritesContext';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { useContext } from "react";
+import { FavoritesContext } from "../../context/FavoritesContext";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import "./productcard.css";
 
 const ProductCard = ({ product }) => {
@@ -10,8 +10,8 @@ const ProductCard = ({ product }) => {
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isFav = favorites.some((item) => item.id === product.id);
   const handleFavoriteClick = (e) => {
-  e.stopPropagation();
-  toggleFavorite(product);
+    e.stopPropagation();
+    toggleFavorite(product);
   };
 
   const rating = product.rating.rate;
@@ -28,17 +28,15 @@ const ProductCard = ({ product }) => {
       <div id="product-card" key={product.id}>
         <div id="product-image">
           <img src={product.image} alt={product.title} />
-         
-          <button onClick={handleFavoriteClick} className="favorite-btn">
+
+          <button onClick={handleFavoriteClick} id="favorite-btn">
             {isFav ? (
-    
-            <FaHeart style={{ color: 'red', fontSize: '1.5rem' }} />
-             ) : (
-    
-            <FaRegHeart style={{ fontSize: '1.5rem' }} />
-             )}
+              <FaHeart style={{ color: "red", fontSize: "1.5rem" }} />
+            ) : (
+              <FaRegHeart style={{ fontSize: "1.5rem" }} />
+            )}
           </button>
-         
+
           <div
             id="rating-badge-border"
             style={{
@@ -53,10 +51,10 @@ const ProductCard = ({ product }) => {
         <div id="product-title">
           <h6 className="m-0">{product.title}</h6>
         </div>
-        <div id="product-price">
-          <p className="m-0">
+        <div>
+          <p id="product-price" className="m-0">
             <sup>$</sup>
-            {product.price}
+            {product.price.toFixed(2)}
           </p>
         </div>
         <div id="product-button">

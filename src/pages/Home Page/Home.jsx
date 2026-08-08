@@ -8,7 +8,7 @@ const Home = () => {
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center my-5 py-5">
-        <div className="spinner-border text-primary" role="status">
+        <div className="spinner-border text-dark" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -16,7 +16,12 @@ const Home = () => {
   }
 
   return (
-    <div id="product-list">
+    <div
+      id="product-list"
+      style={{
+        minHeight: "calc(100vh - 80px)",
+      }}
+    >
       {filteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

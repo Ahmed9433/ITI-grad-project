@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { FavoritesContext } from "../../context/FavoritesContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import ProductCard from "../../components/Product Card/ProductCard";
 import "./FavoritesPage.css";
 
 export default function FavoritesPage() {
-  const { favorites } = useContext(FavoritesContext);
+  const { favorites } = useFavorites();
 
   if (favorites.length === 0) {
     return (
@@ -15,9 +15,11 @@ export default function FavoritesPage() {
           minHeight: "calc(100vh - 80px)",
         }}
       >
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
-          No favorite products
-        </h2>
+        <div id="favorites-empty">
+          <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
+            No favorite products
+          </h2>
+        </div>
       </div>
     );
   }

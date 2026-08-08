@@ -64,7 +64,7 @@ const LoginPage = () => {
 
     localStorage.setItem("currentUser", JSON.stringify(existingUser));
     setFormData(initialFormData);
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
