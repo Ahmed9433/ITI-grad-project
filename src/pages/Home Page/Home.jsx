@@ -5,14 +5,13 @@ import Landing from "../../components/Landing/Landing";
 import "./home.css";
 
 const Home = () => {
-  const { filteredProducts, searchTerm, loading } = useSearch();
+  const { filteredProducts, loading, category, setCategory } = useSearch();
 
   useEffect(() => {
     if (!loading) {
       window.scrollTo(0, 0);
     }
   }, [loading]);
-  const { filteredProducts, loading, category, setCategory } = useSearch();
 
   if (loading) {
     return (
