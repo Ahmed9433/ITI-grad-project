@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
-import { usePop } from "../../context/Popcontext"; // استيراد الـ Hook
+import { usePop } from "../../context/Popcontext";
+
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
   const [expanded, setExpanded] = useState(false);
   const { addToCart } = useCart();
-const { openNotification } = usePop();
+  const { openNotification } = usePop();
   const navigate = useNavigate();
   const data = useParams();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -32,13 +33,10 @@ const { openNotification } = usePop();
     );
   }
 
-
-
-
-  const handleCardClick = () => {
-    // إظهار الإشعار
-    openNotification("تنبيه المنتجات", `عرض تفاصيل ${product.title}`);
- 
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setQuantity(1);
+    openNotification(); // استدعاء الإشعار المنبثق
   };
 
   return (
@@ -60,19 +58,9 @@ const { openNotification } = usePop();
           <div id="product-title">
             <h2>{product?.title}</h2>
           </div>
-<<<<<<< HEAD
-          <button
-            id="add-to-cart"
-            onClick={() => {
-              addToCart(product, quantity);
-              setQuantity(1);
-              handleCardClick()
-            }}
-=======
 
           <div id="product-description">
             <p
-              id="description-text"
               id="description-text"
               className={expanded ? "" : "description"}
               onClick={() => setExpanded((prev) => !prev)}
@@ -94,7 +82,6 @@ const { openNotification } = usePop();
           <div
             id="product-detils-button"
             className="d-flex justify-content-center align-items-center gap-3"
->>>>>>> 0ae2cba9ce96bc13601333da5d8a88be9c71140f
           >
             <div id="product-quantity">
               <button
@@ -125,7 +112,7 @@ const { openNotification } = usePop();
                 if (!currentUser) {
                   e.preventDefault();
                   setMessage(
-                    "Please sign in first to add products to your cart.",
+                    "Please sign in first to add products to your cart."
                   );
                   setTimeout(() => {
                     setMessage("");
@@ -133,8 +120,7 @@ const { openNotification } = usePop();
                   }, 2000);
                   return;
                 }
-                addToCart(product, quantity);
-                setQuantity(1);
+                handleAddToCart();
               }}
             >
               Add to Cart
