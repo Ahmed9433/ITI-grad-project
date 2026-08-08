@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FavoritesContext } from "../../context/FavoritesContext";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useCart } from "../../context/CartContext";
+import { FaRegHeart, FaHeart ,FaShoppingCart } from "react-icons/fa";
 import "./productcard.css";
 
+
 const ProductCard = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
+  const { addToCart } = useCart();
   const navigate = useNavigate();
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isFav = favorites.some((item) => item.id === product.id);
@@ -13,7 +18,8 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
     toggleFavorite(product);
   };
-
+  
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const rating = product.rating.rate;
   const ratingPercentage = Math.round(rating * 2 * 10);
 
@@ -25,6 +31,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
+      {message && <div className="login-message">{message}</div>}
       <div id="product-card" key={product.id}>
         <div id="product-image">
           <img src={product.image} alt={product.title} />
@@ -49,11 +56,11 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div id="product-title">
-          <h6 className="m-0">{product.title}</h6>
+          <h3>{product.title}</h3>
         </div>
         <div>
           <p id="product-price" className="m-0">
-            <sup>$</sup>
+            <span>$</span>
             {product.price.toFixed(2)}
           </p>
         </div>
@@ -61,6 +68,27 @@ const ProductCard = ({ product }) => {
           <button onClick={() => navigate(`/products/${product.id}`)}>
             View Details
           </button>
+          <Link 
+            to={currentUser ? "/cart" : "#"}
+              onClick={(e) => {
+                if (!currentUser) {
+                  e.preventDefault();
+                  setMessage(
+                    "Please sign in first to add products to your cart.",
+                  );
+                  setTimeout(() => {
+                    setMessage("");
+                    navigate("/login");
+                  }, 2000);
+                  return;
+                }
+                addToCart(product, quantity);
+                setQuantity(1);
+              }} 
+              className="add-to"
+            >
+            <FaShoppingCart size={24} />
+          </Link>
         </div>
       </div>
     </>

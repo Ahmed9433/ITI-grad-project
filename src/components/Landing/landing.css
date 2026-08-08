@@ -1,0 +1,24 @@
+.landing {
+    background-image: url('../../assest/photo_2026-08-08_14-51-00.jpg');
+    height: calc(100vh - 106px);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+.landing .text {
+    max-width: 500px;
+    width: 100%;
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #17152b;
+    }
+    p {
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: #29263b;
+    }
+}

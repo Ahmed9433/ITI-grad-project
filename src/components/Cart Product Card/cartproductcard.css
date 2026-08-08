@@ -28,10 +28,19 @@
   line-clamp: 1;
   overflow: hidden;
 }
+span.title {
+  color: #27213d;
+}
+p.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4b0c0c;
+}
 #product-trash {
   display: flex;
-  background-color: #EAA6A6;
+  background-color: #B23A48;
+  color: #fff;
   padding: 0.65rem;
-  border: 1px solid #000;
+  border: 1px solid #b23a48;
   border-radius: 3px;
 }

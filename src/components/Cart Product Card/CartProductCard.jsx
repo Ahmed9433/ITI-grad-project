@@ -15,29 +15,31 @@ const CartProductCard = ({ product }) => {
         style={{ objectFit: "contain" }}
       />
 
-      <span className="text-truncate flex-grow-1">{product.title}</span>
+      <span className="title text-truncate flex-grow-1">{product.title}</span>
+      <div className="cont d-flex align-items-center gap-3">
+          <div className="text-black-50">
+          <p className="m-0 price">
+            <span>$</span>
+            {product.price.toFixed(2)}
+          </p>
+        </div>
 
-      <div className="text-black-50">
-        <p className="m-0">
-          <sup>$</sup>
-          {product.price.toFixed(2)}
-        </p>
-      </div>
+        <div id="product-quantity" className="d-flex align-items-center">
+          <button
+            onClick={() => updateQuantity(product.id, -1)}
+            disabled={product.quantity <= 1}
+          >
+            -
+          </button>
+          <span>{product.quantity}</span>
+          <button onClick={() => updateQuantity(product.id, 1)}>+</button>
+        </div>
 
-      <div id="product-quantity" className="d-flex align-items-center">
-        <button
-          onClick={() => updateQuantity(product.id, -1)}
-          disabled={product.quantity <= 1}
-        >
-          -
+        <button id="product-trash" onClick={() => removeFromCart(product.id)}>
+          <FaTrashAlt size={16} />
         </button>
-        <span>{product.quantity}</span>
-        <button onClick={() => updateQuantity(product.id, 1)}>+</button>
       </div>
-
-      <button id="product-trash" onClick={() => removeFromCart(product.id)}>
-        <FaTrashAlt size={16} />
-      </button>
+      
     </li>
   );
 };

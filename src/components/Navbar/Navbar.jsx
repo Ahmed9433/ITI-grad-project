@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { CiLogin } from "react-icons/ci";
 import { GoPersonAdd } from "react-icons/go";
+import { FiShoppingBag } from "react-icons/fi";
 import { FaShoppingCart, FaRegUserCircle, FaHeart } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
@@ -33,7 +34,11 @@ const Navbar = () => {
       <div className="container">
         <div>
           <Link className="nav-logo" to="/">
-            <b>Home</b>
+            <h1>
+              < FiShoppingBag size={28} className="logo-icon"/>
+              LUNERA 
+            </h1>
+            <span>Everything you need , All in One Place</span>
           </Link>
         </div>
         <button
@@ -50,12 +55,11 @@ const Navbar = () => {
         >
           <div
             id="nav-content-container"
-            className="w-100 d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center gap-3"
+            className="w-100 d-flex flex-column-reverse flex-lg-row justify-content-between align-items-center gap-3"
           >
             <div className="nav-search">
               <Search />
             </div>
-
             <div className="d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center gap-3">
               <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
                 <Link to="/cart" className="nav-link">
