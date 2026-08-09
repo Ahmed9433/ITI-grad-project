@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { useSearch } from "../../context/SearchContext";
 import ProductCard from "../../components/Product Card/ProductCard";
+import Landing from "../../components/Landing/Landing";
 import "./home.css";
 
 const Home = () => {
-  const { filteredProducts, searchTerm, loading } = useSearch();
+  const { filteredProducts, loading, category, setCategory } = useSearch();
+
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, 0);
+    }
+  }, [loading]);
 
   if (loading) {
     return (
@@ -16,16 +24,64 @@ const Home = () => {
   }
 
   return (
-    <div
-      id="product-list"
-      style={{
-        minHeight: "calc(100vh - 80px)",
-      }}
-    >
-      {filteredProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <Landing />
+
+      <div className="filter-container">
+        <button
+          type="button"
+          className={category === "all" ? "filter-active" : ""}
+          onClick={() => setCategory("all")}
+        >
+          All
+        </button>
+
+        <button
+          type="button"
+          className={category === "men's clothing" ? "filter-active" : ""}
+          onClick={() => setCategory("men's clothing")}
+        >
+          Men's Clothing
+        </button>
+
+        <button
+          type="button"
+          className={category === "women's clothing" ? "filter-active" : ""}
+          onClick={() => setCategory("women's clothing")}
+        >
+          Women's Clothing
+        </button>
+
+        <button
+          type="button"
+          className={category === "jewelery" ? "filter-active" : ""}
+          onClick={() => setCategory("jewelery")}
+        >
+          Jewelry
+        </button>
+
+        <button
+          type="button"
+          className={category === "electronics" ? "filter-active" : ""}
+          onClick={() => setCategory("electronics")}
+        >
+          Electronics
+        </button>
+      </div>
+
+      <div id="product-list">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <div className="no-products">
+            <h3>No products found</h3>
+            <p>Try another category or search term.</p>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
