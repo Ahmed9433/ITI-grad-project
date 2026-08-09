@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./productpage.css";
+import { usePop } from "../../context/Popcontext";
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
@@ -10,6 +11,7 @@ const ProductPage = () => {
   const [message, setMessage] = useState("");
   const [expanded, setExpanded] = useState(false);
   const { addToCart } = useCart();
+  const { openNotification } = usePop();
   const navigate = useNavigate();
   const data = useParams();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -30,6 +32,12 @@ const ProductPage = () => {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setQuantity(1);
+    openNotification(); // استدعاء الإشعار المنبثق
+  };
 
   return (
     <>
@@ -53,7 +61,6 @@ const ProductPage = () => {
 
           <div id="product-description">
             <p
-              id="description-text"
               id="description-text"
               className={expanded ? "" : "description"}
               onClick={() => setExpanded((prev) => !prev)}
@@ -105,7 +112,7 @@ const ProductPage = () => {
                 if (!currentUser) {
                   e.preventDefault();
                   setMessage(
-                    "Please sign in first to add products to your cart.",
+                    "Please sign in first to add products to your cart."
                   );
                   setTimeout(() => {
                     setMessage("");
@@ -113,8 +120,7 @@ const ProductPage = () => {
                   }, 2000);
                   return;
                 }
-                addToCart(product, quantity);
-                setQuantity(1);
+                handleAddToCart();
               }}
             >
               Add to Cart

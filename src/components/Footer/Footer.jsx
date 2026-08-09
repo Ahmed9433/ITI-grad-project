@@ -7,6 +7,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import "./footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -38,7 +39,10 @@ const Footer = () => {
           <a href="/">Home</a>
           <a href="/shop">Shop</a>
           <a href="/collection">Collections</a>
-          <a href="/about">About Us</a>
+          <Link to='/about'>
+           <a href="/about">About Us</a>
+          </Link>
+         
           <a href="/contact">Contact</a>
         </div>
 

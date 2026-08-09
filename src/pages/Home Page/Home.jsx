@@ -3,6 +3,7 @@ import { useSearch } from "../../context/SearchContext";
 import ProductCard from "../../components/Product Card/ProductCard";
 import Landing from "../../components/Landing/Landing";
 import "./home.css";
+import Aboutpage from "../About Page/Aboutpage";
 
 const Home = () => {
   const { filteredProducts, loading, category, setCategory } = useSearch();
@@ -26,7 +27,7 @@ const Home = () => {
   return (
     <>
       <Landing />
-
+  <Aboutpage/>
       <div className="filter-container">
         <button
           type="button"

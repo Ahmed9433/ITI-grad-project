@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar/Navbar";
 import FavoritesPage from "./pages/Favorites Page/FavoritesPage";
 import "./App.css"
 import Footer from "./components/Footer/Footer";
+ 
+import Aboutpage from "./pages/About Page/Aboutpage";
 
 function App() {
   const location = useLocation();
@@ -26,6 +28,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/about" element={<Aboutpage/>} />
       </Routes>
       {!hideNavbar &&<Footer />}
     </SearchProvider>

@@ -1,20 +1,25 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { CartProvider } from "./context/CartContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App.jsx";
+
+// Import all Context Providers
+import { CartProvider } from "./context/CartContext.jsx";
+import { PopProvider } from "./context/Popcontext.jsx";
 import { FavoritesProvider } from "./context/FavoritesContext.jsx";
 import { SearchProvider } from "./context/SearchContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <CartProvider>
-      <SearchProvider>
+      <PopProvider>
         <FavoritesProvider>
-          <App />
+          <SearchProvider>
+            <App />
+          </SearchProvider>
         </FavoritesProvider>
-      </SearchProvider>
+      </PopProvider>
     </CartProvider>
-  </BrowserRouter>,
+  </BrowserRouter>
 );
