@@ -27,7 +27,6 @@ const Home = () => {
   return (
     <>
       <Landing />
-  <Aboutpage/>
       <div className="filter-container">
         <button
           type="button"
