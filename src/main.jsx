@@ -11,7 +11,7 @@ import { FavoritesProvider } from "./context/FavoritesContext.jsx";
 import { SearchProvider } from "./context/SearchContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/ITI-grad-project">
     <CartProvider>
       <PopProvider>
         <FavoritesProvider>
